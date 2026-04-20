@@ -19,6 +19,7 @@ const LogIn = () => {
   };
   return (
     <div className="card bg-base-100 mt-5 m-auto w-full max-w-sm shrink-0 shadow-2xl">
+      <title>Login Page</title>
       <h1 className="text-3xl mx-auto font-bold">Login now!</h1>
       <div className="card-body">
         <form onSubmit={handleLogInForm}>

@@ -21,6 +21,7 @@ const Register = () => {
 
   return (
     <div className="card bg-base-100 mt-5 m-auto w-full max-w-sm shrink-0 shadow-2xl">
+      <title>Register Page</title>
       <h1 className="text-3xl mx-auto font-bold">Registration now!</h1>
       <div className="card-body">
         <form onSubmit={handleFormSubmit}>

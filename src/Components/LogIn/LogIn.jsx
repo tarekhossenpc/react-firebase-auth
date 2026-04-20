@@ -4,20 +4,21 @@ import { Link } from "react-router";
 import { auth } from "../../Firebase/firebase.init";
 
 const LogIn = () => {
-  const handleLogInForm = (e) =>{
-    e.preventDefault()
-    const email = e.target.email.value
-    const password = e.target.password.value
-    console.log(email,password)
-    signInWithEmailAndPassword(auth,email,password).then(result=>{
-      console.log(result.user)
-    }).catch(error=>{
-      console.log(error.massage)
-    })
-
-  }
+  const handleLogInForm = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(email, password);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error.massage);
+      });
+  };
   return (
-   <div className="card bg-base-100 mt-5 m-auto w-full max-w-sm shrink-0 shadow-2xl">
+    <div className="card bg-base-100 mt-5 m-auto w-full max-w-sm shrink-0 shadow-2xl">
       <h1 className="text-3xl mx-auto font-bold">Login now!</h1>
       <div className="card-body">
         <form onSubmit={handleLogInForm}>
@@ -36,8 +37,8 @@ const LogIn = () => {
               className="input"
               placeholder="Password"
             />
-            <div  className="mx-auto" >
-              <p >
+            <div className="mx-auto">
+              <p>
                 New to our Website? Please{" "}
                 <Link
                   className=" text-blue-300 hover:text-green-400 text-xl font-bold "

@@ -1,16 +1,20 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import React from "react";
+// import { createUserWithEmailAndPassword } from "firebase/auth";
+import React, { useContext } from "react";
 import { Link } from "react-router";
-import { auth } from "./../../Firebase/firebase.init";
+// import { auth } from "./../../Firebase/firebase.init";
+import { AuthContext } from "../../Contexts/AuthContext/AuthContext";
 
 const Register = () => {
+  const { name, handleRegister } = useContext(AuthContext);
+  console.log(name, handleRegister);
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     console.log(email, password);
 
-    createUserWithEmailAndPassword(auth, email, password)
+    handleRegister(email, password)
       .then((result) => {
         console.log(result.user);
       })
@@ -18,6 +22,20 @@ const Register = () => {
         console.log(error);
       });
   };
+  // const handleFormSubmit = (e) => {
+  //   e.preventDefault();
+  //   const email = e.target.email.value;
+  //   const password = e.target.password.value;
+  //   console.log(email, password);
+
+  //   createUserWithEmailAndPassword(auth, email, password)
+  //     .then((result) => {
+  //       console.log(result.user);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   return (
     <div className="card bg-base-100 mt-5 m-auto w-full max-w-sm shrink-0 shadow-2xl">
@@ -41,7 +59,7 @@ const Register = () => {
               placeholder="Password"
             />
             <div className="mx-auto">
-              <p  >
+              <p>
                 Have an account? Please{" "}
                 <Link
                   className=" text-blue-300 hover:text-green-400 text-xl font-bold "

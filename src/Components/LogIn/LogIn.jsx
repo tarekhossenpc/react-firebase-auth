@@ -1,22 +1,41 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
-import React from "react";
+// import { signInWithEmailAndPassword } from "firebase/auth";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router";
-import { auth } from "../../Firebase/firebase.init";
+// import { auth } from "../../Firebase/firebase.init";
+import { AuthContext } from "../../Contexts/AuthContext/AuthContext";
 
 const LogIn = () => {
+  const [error, setError] = useState("");
+  const { handleLogin } = useContext(AuthContext);
   const handleLogInForm = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     console.log(email, password);
-    signInWithEmailAndPassword(auth, email, password)
+
+    handleLogin(email, password)
       .then((result) => {
         console.log(result.user);
       })
       .catch((error) => {
-        console.log(error.massage);
+        setError(error.message);
+        console.log(error);
       });
   };
+
+  // const handleLogInForm = (e) => {
+  //   e.preventDefault();
+  //   const email = e.target.email.value;
+  //   const password = e.target.password.value;
+  //   console.log(email, password);
+  //   signInWithEmailAndPassword(auth, email, password)
+  //     .then((result) => {
+  //       console.log(result.user);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.massage);
+  //     });
+  // };
   return (
     <div className="card bg-base-100 mt-5 m-auto w-full max-w-sm shrink-0 shadow-2xl">
       <title>Login Page</title>
@@ -52,6 +71,7 @@ const LogIn = () => {
             <button className="btn btn-neutral mt-4">LogIn</button>
           </fieldset>
         </form>
+        <p className="text-red-500">{error}</p>
       </div>
     </div>
   );

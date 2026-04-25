@@ -1,10 +1,12 @@
 // import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useContext, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 // import { auth } from "../../Firebase/firebase.init";
-import { AuthContext } from "../../Contexts/AuthContext/AuthContext";
+import { AuthContext } from "../../Contexts/AuthContext";
 
 const LogIn = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
   const [error, setError] = useState("");
   const { handleLogin } = useContext(AuthContext);
   const handleLogInForm = (e) => {
@@ -15,6 +17,7 @@ const LogIn = () => {
 
     handleLogin(email, password)
       .then((result) => {
+        navigate(location.pathname || '/')
         console.log(result.user);
       })
       .catch((error) => {
